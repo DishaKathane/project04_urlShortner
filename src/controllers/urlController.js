@@ -92,7 +92,7 @@ const createUrl = async (req, res) => {
 
     const checklongUrl = await urlModel
       .findOne({ longUrl: longUrl })
-      .select({ createdAt: 0, updatedAt: 0, __v: 0 });
+      .select({ createdAt: 0, updatedAt: 0, __v: 0,_id: 0});
 
     if (checklongUrl) {
       await SET_ASYNC(
