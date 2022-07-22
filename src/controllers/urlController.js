@@ -91,7 +91,7 @@ const createUrl = async (req, res) => {
 
     const checklongUrl = await urlModel
       .findOne({ longUrl: longUrl })
-      .select({ createdAt: 0, updatedAt: 0, __v: 0 });
+      .select({ _id:0, createdAt: 0, updatedAt: 0, __v: 0 });
 
     if (checklongUrl) {
       await SET_ASYNC(`${longUrl}`, JSON.stringify(checklongUrl), "EX", 10);
@@ -175,7 +175,7 @@ const getUrl = async function (req, res) {
     let data = await urlModel.findOne({ urlCode: urlCode });
 
     if (data) {
-      await SET_ASYNC(`${longUrl}`, JSON.stringify(data));
+      await SET_ASYNC(`${urlCode}`, JSON.stringify(data));
       // redisClient.expire(`${urlCode}`, timeLimit);
       return res.status(302).redirect(data.longUrl);
     } else {
