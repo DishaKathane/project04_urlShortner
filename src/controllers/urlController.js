@@ -6,7 +6,7 @@ const validUrl = require("valid-url");
 const redis = require("redis");
 const { promisify } = require("util");
 const baseUrl = "http://localhost:3000";
-const timeLimit = 20;
+const timeLimit = 20*60;
 
 //-------------------------------- GLobal Validation Defined--------------------------------//
 
@@ -103,7 +103,7 @@ const createUrl = async (req, res) => {
       );
       return res.status(200).send({
         status: true,
-        message: "data from mongoDb server",
+        message: "data from mongoDb Database",
         data: checklongUrl,
       });
     }
